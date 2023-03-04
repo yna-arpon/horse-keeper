@@ -2,8 +2,11 @@
 
 {% block head %}
 <title>History</title>
+<link rel="script" href="{{ url_for('static', filename='css/history.css') }}">
 {% endblock %}
 
 {% block body %}
 <h1>This is the history page</h1>
+
+<script src="{{url_for('static', filename='js/history.js')}}"></script>
 {% endblock %}

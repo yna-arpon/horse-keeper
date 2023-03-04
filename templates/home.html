@@ -2,8 +2,12 @@
 
 {% block head %}
 <title>Horse Keeper</title>
+<link rel="script" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block body %}
-<h1>This is the home page</h1>
+<h1 id="header">This is the home page</h1>
+
+
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
 {% endblock %}
