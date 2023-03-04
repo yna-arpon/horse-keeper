@@ -3,3 +3,22 @@
 * {
     font-family: 'Poppins';
 }
+
+.btn {
+    padding: 2px 15px 2px 15px;
+    font-size: 1rem;
+    background-color: #202020;
+    color: white;
+    border-radius: 12px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn:disabled {
+    background-color: #808080;
+    color: #D8D8D8;
+    text-decoration: none;
+}

@@ -1,1 +1,44 @@
 /* ---------------------------- Styling for Home Page  --------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#homeContents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 7%;
+    margin-bottom: 20%;
+}
+
+#horseLogo {
+    width: 15%;
+}
+
+#homeHeader {
+    font-size: 3rem;
+    font-weight: 100;
+    margin: 2% 0% 3% 0%;
+}
+
+#downloadPrompt {
+    font-weight: 100;
+    margin-bottom: 2%;
+}
+
+#dataUploadContent {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin-bottom: 3%;
+}
+
+#fileChosen {
+    padding-right: 10px;
+}
+
+#uploadDataBtn {
+    font-size: 1.5rem;
+}

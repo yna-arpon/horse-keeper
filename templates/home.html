@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Horse Keeper</title>
-<link rel="script" href="{{ url_for('static', filename='css/home.css') }}">
+<title>HorseKeeper</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
+
 {% block body %}
-<h1 id="header">This is the home page</h1>
+
+<div id="homeContents">
+    <image id="horseLogo" src="../static/images/horseKeeperLogoLight.png"></image>
+    <h1 id="homeHeader">HorseKeeper</h1>
+    <h1 id="downloadPrompt">Download your Data Set:</h1>
+    <div id="dataUploadContent">
+        <p id="fileChosen">No File Chosen</p>
+        <button class="btn" id="selectFileBtn">Select a file</button>
+    </div>
+    <button class="btn" id="uploadDataBtn">Upload Data</button>
+</div>
 
 
 <script src="{{url_for('static', filename='js/home.js')}}"></script>

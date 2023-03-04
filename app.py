@@ -14,7 +14,7 @@ class cough(db.Model):
         # default name of cough data instance - user can change
     
 
-@app.route('/', methods=['POST'])
+@app.route('/')
 def home():
     return render_template('home.html')
 
