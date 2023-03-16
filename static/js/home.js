@@ -24,7 +24,7 @@ if (fileSelected) { // If we have a file selected, disable select btn
 uploadBtn.addEventListener('click', (_event) => {
     // If file has been selected upload it
     if (fileSelected) {
-        console.log('upload the file')
+        console.log('hello')
         uploadReminder.style.display = 'flex'
     // Otherwise show the reminder    
     }
