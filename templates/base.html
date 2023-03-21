@@ -12,6 +12,11 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    <div id="navBar">
+        <button class="navBarContents" id="homeBtn">Home</button>
+        <button class="navBarContents" id="historyBtn">History</button>
+    </div>
     {% block body %}{% endblock %}
+    <script src="{{url_for('static', filename='js/navBar.js')}}"></script>
 </body>
 </html>
