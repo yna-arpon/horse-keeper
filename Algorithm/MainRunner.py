@@ -12,8 +12,8 @@ def main():
    
     cough_num = [[],[]] # [[number of coughs],[global max point numbers at each cough]]
     flag_num = [[],[]] # [[number of flags],[global max point numbers at each flag]]
-    audio_data = [[],[],[],[]] # [[vibration/mic data],[local max average],[global max],[global max point #]]
-    accel_data = [[],[],[],[],[],[]] # [[accelerometer data],[local max average],[global max],[global max point #],[local min average],[global min]]
+    audio_data = [[],[],[],[]] # [[vibration/mic data],[local max average],[global max],[global max index]]
+    accel_data = [[],[],[],[],[],[],[]] # [[accelerometer data],[local max average],[global max],[global max index],[local min average],[global min],[global min index]]
 
     audio_data[0] = pd.read_csv(audio_file_path)
     accel_data[0] = pd.read_csv(accel_file_path)
