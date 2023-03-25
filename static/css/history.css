@@ -1,1 +1,10 @@
 /* ---------------------------- Styling for History Page  --------------------------- */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#historycontents    {
+    margin: 30px;
+}
+
