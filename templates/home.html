@@ -11,11 +11,35 @@
 <div id="homeContents">
     <image id="horseLogo" src="../static/images/horseKeeperLogoLight.png"></image>
     <h1 id="homeHeader">HorseKeeper</h1>
-    <h1 id="downloadPrompt">Download your Data Set:</h1>
-    <div id="dataUploadContent">
-        <p id="fileChosen">No File Chosen</p>
-        <button class="btn" id="selectFileBtn">Select a file</button>
+    <h1 id="downloadPrompt">Upload your Data Set:</h1>
+    
+    <div id="dataInputContents">
+        <div class="dataInputDiv">
+            <p>Select Filtered Audio File:</p>
+            <input type="file" id="audioData" name="audioData" accept=".csv" required>
+        </div>
+        
+        <div class="dataInputDiv">
+            <p>Select Filtered Acceleration File:</p>
+            <input type="file" id="accData" name="accData" accept=".csv" required>
+        </div>
     </div>
+    
+
+    <dialog id="loadingDialog">
+        <h3 class='resultsDialogHeading' id="analyzingHeading">Analyzing...</h3>
+        <img id="loadingAnimation" src="../static/images/loadingAnitmation.gif">
+    </dialog>
+
+    <dialog id="coughCountDialog">
+        <h2 class='resultsDialogHeading' id="coughDataName"></h2>
+        <h1 id="coughCountVal"></h1>
+        <div id="coughDialogBtnsDiv">
+            <button id="backHome" class="btn coughBtns" style="margin-right: 2%;">Back</button>
+            <button id="toHistory" class="btn coughBtns">See History</button>
+        </div>
+    </dialog>
+    
     <button class="btn" id="uploadDataBtn">Upload Data</button>
 </div>
 
