@@ -43,11 +43,11 @@ toHistoryBtn.addEventListener('click', (_event) => {
 setInterval(checkFileInput, 500); // checks every 500ms if files are selected
 
 function checkFileInput() {
-    // if (accData.files.length <= 0 || audioData.files.length <= 0 ) {
-    //     uploadBtn.disabled = true;
-    // } else {
-    //     uploadBtn.disabled = false;
-    // }
+    if (accData.files.length <= 0 || audioData.files.length <= 0 ) {
+        uploadBtn.disabled = true;
+    } else {
+        uploadBtn.disabled = false;
+    }
 }
 
 function initializeAnalysis() {
