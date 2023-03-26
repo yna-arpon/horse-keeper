@@ -19,13 +19,26 @@ class cough(db.Model):
 def home():
     return render_template('home.html')
 
-@app.route('/history')
+@app.route('/history', methods=['POST', 'GET'])  # GETTING OPERATIONAL ERRORS. WIP
 def history():
-    return render_template('history.html')
+    if request.method == 'POST':
+        cough_content = request.form['content'] # get our input (testing. final should be from homepage)
+        new_file = cough(content=cough_content)
+        try:
+            db.session.add(new_file)
+            db.session.commit()
+            return redirect('/history')
+        except:
+            return 'There was an issue adding your file'
+        
+    else:
+        files = cough.query.order_by(cough.dateCreated).all() # ordering by date created. can use first, etc. use for sort function
+        return render_template('history.html', files=files)
+    
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    data_to_delete = pass
+    data_to_delete = "pass"
 
     try:
         db.session.delete(data_to_delete)
