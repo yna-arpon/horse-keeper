@@ -5,6 +5,22 @@
 }
 
 #historycontents    {
-    margin: 30px;
+    font-size:1.2rem ;
+    margin-left: 50px;
+    margin-top: 50px;
+    padding: 10px;
 }
 
+#sortbyBtn { /* could add arrow image */
+    margin-left: 60px;
+    margin-top: 8px;
+    padding: 2px 15px 2px 15px;
+    font-size: 1rem;
+    border-radius: 12px ; 
+    border: 1px solid black;
+    background-color: white ;
+    color: black;
+    
+    
+    
+}
