@@ -12,7 +12,8 @@ class cough(db.Model):
     dateCreated = db.Column(db.DateTime, default=datetime.date) # when the cough data is downloaded 
     dataName = db.Column(db.String(100), default='Cough Count on ' + datetime.now().strftime("%d/%m/%Y %H:%M:%S")) 
         # default name of cough data instance - user can change
-    
+
+
 
 @app.route('/')
 def home():
@@ -21,6 +22,17 @@ def home():
 @app.route('/history')
 def history():
     return render_template('history.html')
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    data_to_delete = pass
+
+    try:
+        db.session.delete(data_to_delete)
+        db.session.commit()
+        return redirect('/history')
+    except:
+        return 'There was a problem deleting the file'
 
 if __name__ == "__main__":
     app.run(debug=True) 
