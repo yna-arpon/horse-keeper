@@ -14,69 +14,78 @@ import numpy as np
 class accel_data_calculator:
     
     def __init__ (self,accel_data):
-        accel_datapt = accel_data[2]
-        accel_data_magnitude = accel_data[0]
+        accel_data = accel_data[0]
         
-        self.accel_datapt = accel_datapt
-        self.accel_data_magnitude = accel_data_magnitude
+        self.accel_data = accel_data
         
-    def local_max_points(cls, accel_data_magnitude):
+    def local_max_points(self):
 
         local_max_points = []
 
-        local_max_points = np.where((accel_data_magnitude[1:1] > accel_data_magnitude[0:-2]) * (accel_data_magnitude[1:-1] > accel_data_magnitude[2:]))[0] + 1
+        local_max_points = np.where((self.accel_data[1:1] > self.accel_data[0:-2]) * (self.accel_data[1:-1] > self.accel_data[2:]))[0] + 1
 
         return local_max_points
     
-    def local_max_average(cls, local_max_points):
+    def local_max_average(self):
+
+        local_max_points = local_max_points (self.accel_data)
 
         # averages the local max points
         local_max_average = np.average(local_max_points)
 
         return local_max_average
     
-    def local_min_points(cls, accel_data_magnitude):
+    def local_min_points(self):
         
-        local_min_points = np.where((accel_data_magnitude[1:1] < accel_data_magnitude[0:-2]) * (accel_data_magnitude[1:-1] < accel_data_magnitude[2:]))[0] + 1
+        local_min_points = []
+
+        local_min_points = np.where((self.accel_data[1:1] < self.accel_data[0:-2]) * (self.accel_data[1:-1] < self.accel_data[2:]))[0] + 1
 
         return local_min_points
     
-    def local_min_average(cls, local_min_points):
+    def local_min_average(self):
 
+        local_min_points = local_min_points (self.accel_data)
         local_min_average = np.average(local_min_points)
 
-        return local_min_points
+        return local_min_average
     
-    def global_max(cls,accel_data_magnitude):
+    def global_max(self):
 
-        global_max = np.max(accel_data_magnitude)
+        global_max = np.max(self.accel_data)
             
         return global_max
     
-    def global_max_point(cls, global_max, accel_data_magnitude, accel_datapt):
+    def global_max_index(self):
 
-        global_max_index= np.where(accel_data_magnitude == global_max)
+        global_max = global_max (self.accel_data)
 
-        global_max_point = accel_datapt[global_max_index]
+        global_max_index= np.where(self.accel_data == global_max)
 
-        return global_max_point
+        #global_max_point = accel_datapt[global_max_index]
+
+        return global_max_index
     
-    def global_min(cls, accel_data_magnitude):
+    def global_min(self):
 
-        global_min = np.min(accel_data_magnitude)
+        global_min = np.min(self.accel_data)
             
         return global_min
 
-         
-    def peak_period(cls, global_min, global_max_point, accel_datapt,accel_data_magnitude):
+    def global_min_index(self):
+        
+        global_min = global_min(self.accel_data)
+
+        global_min_index = np.where(self.accel_data == global_min)
+
+        #global_min_point = accel_datapt[global_min_index]
+
+        return global_min_index
+
+    #def peak_period(cls, global_max_index, global_min_index):
 
         #find the difference betwee the global_min and global_max time points
 
-        global_min_index = np.where(accel_data_magnitude == global_min)
+        #peak_period = (global_max_index - global_min_index)
 
-        global_min_point = accel_datapt[global_min_index]
-
-        peak_period = (global_min_point - global_max_point)
-
-
-        return peak_period
+        #return peak_period
