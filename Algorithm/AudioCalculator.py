@@ -27,8 +27,8 @@ class audio_data_calculator:
         local_max_points = [] 
 
         for i in range(1, len(self.audio_datafreq)-1):
-            if self.aaudio_datafreq[i-1] < self.audio_datafreq[i] and self.audio_datafreq[i] > self.audio_datafreq[i+1]:
-                local_max_points.append(self.aaudio_datafreq[i])
+            if self.audio_datafreq[i-1] < self.audio_datafreq[i] and self.audio_datafreq[i] > self.audio_datafreq[i+1]:
+                local_max_points.append(self.audio_datafreq[i])
             else:
                 pass
 
@@ -37,15 +37,9 @@ class audio_data_calculator:
         #local_max_points = np.where((self.audio_datafreq[1:1] > self.audio_datafreq[0:-2]) * (self.audio_datafreq[1:-1] > self.audio_datafreq[2:]))[0] + 1 
 
     def local_max_average(self):
-<<<<<<< Updated upstream
-        local_max_points = [] 
-        local_max_points = self.local_max_points()
-        
-=======
 
         local_max_points = local_max_points(self.audio_datafreq)
 
->>>>>>> Stashed changes
         # averages the local max points
         local_max_average = np.average(local_max_points)
 
