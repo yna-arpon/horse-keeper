@@ -57,8 +57,7 @@ class accel_data_calculator:
     
     def local_min_average(self):
 
-        local_min_points = local_min_points (self.accel_data)
-        local_min_average = np.average(local_min_points)
+        local_min_average = np.average(self.localminpoints)
 
         self.local_min_average = local_min_average
     
@@ -70,9 +69,7 @@ class accel_data_calculator:
     
     def global_max_index(self):
 
-        global_max = global_max (self.accel_data)
-
-        global_max_index= np.where(self.accel_data == global_max)
+        global_max_index= np.where(self.accel_data == self.global_max)
 
         self.global_max_index = global_max_index
     
@@ -83,9 +80,7 @@ class accel_data_calculator:
         self.global_min = global_min
 
     def global_min_index(self):
-        
-        global_min = global_min(self.accel_data)
 
-        global_min_index = np.where(self.accel_data == global_min)
+        global_min_index = np.where(self.accel_data == self.global_min)
 
         self.global_min_index = global_min_index
