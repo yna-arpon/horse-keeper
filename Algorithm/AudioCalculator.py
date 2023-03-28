@@ -6,16 +6,16 @@ import numpy as np
 class audio_data_calculator:
 
     def __init__(self,audio_data):
-        self.audio_datafreq = audio_data[0]
+        self.audio_datafreq = audio_data
         self.audio_returnarr = [[],[],[]] #[[localmaxave],[globalmax],[globalmaxindex]]
         self.localmaxpts = []
 
     def audio_return(self):
         
-        self.localmaxpts = self.local_max_points(self)
-        self.audio_returnarr[0] = self.local_max_average(self)
-        self.audio_returnarr[1] = self.global_max(self)
-        self.audio_returnarr[2] = self.global_max_index(self)
+        self.localmaxpts = self.local_max_points()
+        self.audio_returnarr[0] = self.local_max_average()
+        self.audio_returnarr[1] = self.global_max()
+        self.audio_returnarr[2] = self.global_max_index()
 
         return self.audio_returnarr # returns the audio return array to the main: can be called by audiodataarray = audio_data_calculator.audio_return(audio_data)
     
@@ -30,14 +30,12 @@ class audio_data_calculator:
                 local_max_points.append(self.audio_datafreq[i])
             else:
                 pass
-
+            print(local_max_points)
             self.local_max_points = local_max_points
 
     def local_max_average(self):
 
-        local_max_points = local_max_points(self.audio_datafreq)
-
-        local_max_average = np.average(local_max_points)
+        local_max_average = np.average(self.localmaxpts)
 
         self.local_max_average = local_max_average
 

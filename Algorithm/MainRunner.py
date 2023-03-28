@@ -27,10 +27,10 @@ def main():
         # c = slice(x, x+2000, 10) #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
         # audio_slice = audio_data[0][c]
         audio_slice = audio_data[0][x:x+2000:10]
-
         #make class for clices
         audio_calculations = audio_data_calculator(audio_slice)
-
+        print(audio_calculations.audio_datafreq)
+        audio_calculations.audio_return()
         #append info to data_array (in the correct area)
         x += 1000
     
