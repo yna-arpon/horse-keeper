@@ -16,14 +16,16 @@ class audio_data_calculator:
 
     def __init__(self,audio_data):
         self.audio_datafreq = audio_data[0]
+        self.audio_returnarr = [[],[],[]] #[[localmaxave],[globalmax],[globalmaxindex]]
+
+    def audio_return(self):
+        self.audio_returnarr[0] = self.local_max_average(self)
+        self.audio_returnarr[1] = self.global_max(self)
+        self.audio_returnarr[2] = self.global_max_index(self)
 
         #identifies and collects points of local maximum
     def local_max_points(self): 
-        # peaks: makes a list of all indices where the value of y[i] is greater than
-        # both of its negihbours. Does not check the endpoints, which only have one
-        # neighbour each. 
-        # +1 finds the indices within the slice y[1:-1], not the full array y
-        # [0] returns a tuple of arrays, where the first element is the array we want
+
         local_max_points = [] 
 
         for i in range(1, len(self.audio_datafreq)-1):
@@ -34,8 +36,6 @@ class audio_data_calculator:
 
             return local_max_points
 
-        #local_max_points = np.where((self.audio_datafreq[1:1] > self.audio_datafreq[0:-2]) * (self.audio_datafreq[1:-1] > self.audio_datafreq[2:]))[0] + 1 
-
     def local_max_average(self):
 
         local_max_points = local_max_points(self.audio_datafreq)
@@ -43,13 +43,13 @@ class audio_data_calculator:
         # averages the local max points
         local_max_average = np.average(local_max_points)
 
-        return local_max_average
+        self.local_max_average = local_max_average
 
     def global_max(self):
         
         global_max = np.max(self.audio_datafreq)
             
-        return global_max
+        self.global_max = global_max
     
     def global_max_index(self):
 
@@ -58,4 +58,4 @@ class audio_data_calculator:
         #gives index of the arrat in audio_data_freq
         global_max_index = np.where(self.audio_datafreq == global_max)
 
-        return global_max_index
+        self.global_max_index = global_max_index
