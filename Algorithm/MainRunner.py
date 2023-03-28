@@ -15,24 +15,27 @@ def main():
     audio_data = [[],[],[],[]] # [[vibration/mic data],[local max average],[global max],[global max index]]
     accel_data = [[],[],[],[],[],[],[]] # [[accelerometer data],[local max average],[global max],[global max index],[local min average],[global min],[global min index]]
 
-    audio_data[0] = pd.read_csv(audio_file_path) #works
-    accel_data[0] = pd.read_csv(accel_file_path) #works
-    
-    # print(audio_data)
-    # print(accel_data)
+    df = np.loadtxt(audio_file_path, delimiter=',')
+    # accel_data[0] = pd.read_csv(accel_file_path) #works
+    audio_data[0] = df
+    print("this is audio", audio_data[0])
 
     #Get calculations
     #assuming 8kHz (16000 data points for 2s, 32000 for 4s) for data collection this is how we slice an array into parts
-    # i = 0
-    #   for i =< data_array.shape//16000:
-    #     c = slice(i, i+32000, 1) #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
-    #     data_slice = data_array[0][c]
-    #     #do things with slice
-    #     #append info to data_array (in the correct area)
-    #     i += 16000
-    # return data_array
-    audio_calculations = audio_data_calculator(audio_data)
-    print(audio_calculations.audio_datafreq)
+    x = 0
+    for i in range(0, len(audio_data[0])//1000):
+        # c = slice(x, x+2000, 10) #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
+        # audio_slice = audio_data[0][c]
+        audio_slice = audio_data[0][x:x+2000:10]
+
+        #make class for clices
+        audio_calculations = audio_data_calculator(audio_slice)
+
+        #append info to data_array (in the correct area)
+        x += 1000
+    
+    # accel_calculations = accel_data_calculator(accel_slice)
+    # accel_slice = audio_data[0][c]
     # audio_calculations.local_max_average()
     # audio_data[1] =
     # audio_calculations.global_max()
@@ -49,11 +52,11 @@ def main():
     # accel_data[5] = accel_data_calculator.global_min(accel_data)
 
     #Get Answers
-    cough_num = AnswerGen.answer(audio_data, accel_data)
+    # cough_num = AnswerGen.answer(audio_data, accel_data)
 
-    print(cough_num[0])
-    for x in cough_num[1]:
-        print(cough_num[1][x])
+    # print(cough_num[0])
+    # for x in cough_num[1]:
+    #     print(cough_num[1][x])
 
 
     # if time_stamp == True:
