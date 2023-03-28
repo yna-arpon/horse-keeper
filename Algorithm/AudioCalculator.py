@@ -15,9 +15,7 @@ import numpy as np
 class audio_data_calculator:
 
     def __init__(self,audio_data):
-        audio_datafreq = audio_data[0]
-
-        self.audio_datafreq = audio_datafreq
+        self.audio_datafreq = audio_data[0]
 
         #identifies and collects points of local maximum
     def local_max_points(self): 
@@ -33,8 +31,8 @@ class audio_data_calculator:
         return local_max_points
 
     def local_max_average(self):
-
-        local_max_points = local_max_points(self.audio_datafreq)
+        local_max_points = [] 
+        local_max_points = self.local_max_points()
         
         # averages the local max points
         local_max_average = np.average(local_max_points)
@@ -42,7 +40,7 @@ class audio_data_calculator:
         return local_max_average
 
     def global_max(self):
-
+        
         global_max = np.max(self.audio_datafreq)
             
         return global_max
