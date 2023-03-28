@@ -22,7 +22,15 @@ class accel_data_calculator:
 
         local_max_points = []
 
-        local_max_points = np.where((self.accel_data[1:1] > self.accel_data[0:-2]) * (self.accel_data[1:-1] > self.accel_data[2:]))[0] + 1
+        for i in range(1, len(self.accel_data)-1):
+            if self.accel_data[i-1] < self.accel_data[i] and self.accel_data[i] > self.accel_data[i+1]:
+                local_max_points.append(self.accel_data[i])
+            else:
+                pass
+
+            return local_max_points
+
+        #local_max_points = np.where((self.accel_data[1:1] > self.accel_data[0:-2]) * (self.accel_data[1:-1] > self.accel_data[2:]))[0] + 1
 
         return local_max_points
     
@@ -39,9 +47,16 @@ class accel_data_calculator:
         
         local_min_points = []
 
-        local_min_points = np.where((self.accel_data[1:1] < self.accel_data[0:-2]) * (self.accel_data[1:-1] < self.accel_data[2:]))[0] + 1
+        for i in range(1, len(self.accel_data)-1):
+            if self.accel_data[i-1] > self.accel_data[i] and self.accel_data[i] < self.accel_data[i+1]:
+                local_min_points.append(self.accel_data[i])
+            else:
+                pass
 
-        return local_min_points
+            return local_min_points
+
+        #local_min_points = np.where((self.accel_data[1:1] < self.accel_data[0:-2]) * (self.accel_data[1:-1] < self.accel_data[2:]))[0] + 1
+
     
     def local_min_average(self):
 
