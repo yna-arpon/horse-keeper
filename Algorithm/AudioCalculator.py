@@ -12,10 +12,10 @@ class audio_data_calculator:
 
     def audio_return(self):
         
-        self.localmaxpts = self.local_max_points()
-        self.audio_returnarr[0] = self.local_max_average()
-        self.audio_returnarr[1] = self.global_max()
-        self.audio_returnarr[2] = self.global_max_index()
+        self.local_max_points()
+        self.local_max_average()
+        self.global_max()
+        self.global_max_index()
 
         return self.audio_returnarr # returns the audio return array to the main: can be called by audiodataarray = audio_data_calculator.audio_return(audio_data)
     
@@ -28,15 +28,17 @@ class audio_data_calculator:
         for i in range(1, len(self.audio_datafreq)-1):
             if self.audio_datafreq[i-1] < self.audio_datafreq[i] and self.audio_datafreq[i] > self.audio_datafreq[i+1]:
                 local_max_points.append(self.audio_datafreq[i])
+            
             else:
                 pass
-            print(local_max_points)
-            self.local_max_points = local_max_points
+
+            self.localmaxpts = local_max_points
+
 
     def local_max_average(self):
 
         local_max_average = np.average(self.localmaxpts)
-
+    
         self.local_max_average = local_max_average
 
     def global_max(self):
@@ -47,8 +49,7 @@ class audio_data_calculator:
     
     def global_max_index(self):
 
-        global_max = global_max(self.audio_datafreq)
 
-        global_max_index = np.where(self.audio_datafreq == global_max)
+        global_max_index = np.where(self.audio_datafreq == self.global_max)
 
         self.global_max_index = global_max_index
