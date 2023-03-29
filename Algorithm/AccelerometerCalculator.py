@@ -5,7 +5,7 @@ import numpy as np
 class accel_data_calculator:
     
     def __init__ (self,accel_data):
-        self.accel_data = accel_data [0]
+        self.accel_data = accel_data
         self.accel_returnarr = [[],[],[],[],[],[]] #[[localmaxave],[localminave],[globalmax],[globalmaxindex],[globalmin],[globalminindex]]
         self.localmaxpoints = []
         self.localminpoints = []
@@ -21,8 +21,6 @@ class accel_data_calculator:
         self.global_max_index()
         self.global_min()
         self.global_min_index()
-
-        return self.accel_returnarr
         
     def local_max_points(self):
 
@@ -40,7 +38,7 @@ class accel_data_calculator:
 
         local_max_average = np.average(self.localmaxpoints)
 
-        self.local_max_average = local_max_average
+        self.accel_returnarr[0] = local_max_average
     
     def local_min_points(self):
         
@@ -59,28 +57,28 @@ class accel_data_calculator:
 
         local_min_average = np.average(self.localminpoints)
 
-        self.local_min_average = local_min_average
+        self.accel_returnarr[1] = local_min_average
     
     def global_max(self):
 
         global_max = np.max(self.accel_data)
             
-        self.global_max = global_max
+        self.accel_returnarr[2] = global_max
     
     def global_max_index(self):
 
-        global_max_index= np.where(self.accel_data == self.global_max)
+        global_max_index= np.where(self.accel_data == self.accel_returnarr[2])[0][0]
 
-        self.global_max_index = global_max_index
+        self.accel_returnarr[3] = global_max_index
     
     def global_min(self):
 
         global_min = np.min(self.accel_data)
-            
-        self.global_min = global_min
+
+        self.accel_returnarr[4] = global_min
 
     def global_min_index(self):
 
-        global_min_index = np.where(self.accel_data == self.global_min)
+        global_min_index = np.where(self.accel_data == self.accel_returnarr[4])[0][0] 
 
-        self.global_min_index = global_min_index
+        self.accel_returnarr[5] = global_min_index
