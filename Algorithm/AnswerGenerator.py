@@ -5,7 +5,7 @@ class AnswerGen:
         self.data1 = audiodata
         self.data2 = acceldata
         self.trues = [[],[],[],[]] # [[max audio],[max accel],[min accel],[time between max and min]]
-        self.cough = [[],[]]
+        self.cough = [[],[],[],[]] # [[cough count],[cough index],[flag count],[cough flag index]]
 
     def answer_return(self):
         
@@ -17,14 +17,33 @@ class AnswerGen:
 
     def answer(self):  
 
-        result = self.trues[0] + self.trues[1] + self.trues[2] + self.trues[3]
+        trues1 = np.array(self.trues[0])
+        trues2 = np.array(self.trues[1])
+        trues3 = np.array(self.trues[2])
+        trues4 = np.array(self.trues[3])
+        
+        result = trues1 + trues2 + trues3 + trues4
+        cough_index = []
+        flag_index = []
 
-        z = 0
-        for x in result:
-            if result > 2 and x in self.trues[1] == 1 and x != z:
-                self.cough[0] += 1
-                self.cough[1].append(self.data2[3][np.where(x)])
-                z=x   
+        z = -1
+        for i in range(0, len(result)):
+
+            if result[i] > 2:
+                if trues2[i] != 0:
+                    if i != z:
+                        cough_index.append(self.data2[3][i])
+                        z = i + 1
+
+            if result[i] > 1:
+                flag_index.append(self.data2[3][i])
+
+        flag_index = list(set(flag_index)) # removes duplicate flags
+
+        self.cough[0] = len(cough_index)
+        self.cough[1] = cough_index
+        self.cough[2] = len(flag_index)
+        self.cough[3] = flag_index
 
     def audio_answer(self):
 
@@ -38,7 +57,7 @@ class AnswerGen:
             else:
                 audio_result.append(0)
 
-        print(audio_result) #works
+        #print(audio_result) #works
 
         self.trues[0] = audio_result        
 
@@ -54,7 +73,7 @@ class AnswerGen:
             else:
                 accel_max_result.append(0)
 
-        print(accel_max_result) #works
+        #print(accel_max_result) #works
 
         self.trues[1] = accel_max_result
    
@@ -70,7 +89,7 @@ class AnswerGen:
             else:
                 accel_min_result.append(0)
 
-        print(accel_min_result) #works
+        #print(accel_min_result) #works
 
         self.trues[2] = accel_min_result    
 
@@ -86,6 +105,6 @@ class AnswerGen:
             else:
                 accel_time_result.append(0)
 
-        print(accel_time_result) #works
+        #print(accel_time_result) #works
 
         self.trues[3] = accel_time_result

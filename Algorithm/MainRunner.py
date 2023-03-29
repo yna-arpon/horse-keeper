@@ -56,25 +56,42 @@ def main():
 
         x += 5000
 
-    #print("This is audio array", audio_data)
-    print("This is accelerometer array", accel_data)
-    print("This is a min avg array", accel_data[1])
-    print("This is a global min array", accel_data[4])
+    # print("This is audio array", audio_data)
+    # print("This is accelerometer array", accel_data)
+    # print("This is a min avg array", accel_data[1])
+    # print("This is a global min array", accel_data[4])
 
     #Get Answers
-    #make calculation class for audio slices
+    #make answer class for data slices
     cough_answers = AnswerGen(audio_data, accel_data)
+
+    #calculate answers for data slices
     cough_answers.answer_return()
+    answer = cough_answers.cough
 
-        
-
-    # print(cough_num[0])
-    # for x in cough_num[1]:
-    #     print(cough_num[1][x])
-
-    # if time_stamp == True:
-    #     print(cough_num[1])
+    #print number of coughs
+    num_coughs = answer[0]
+    print("Number of horse coughs counted: ", num_coughs)
     
+    #print time-stamps of coughs
+    cough_time = np.array(answer[1])/2500
+    cough_h = cough_time//3600
+    cough_m = (cough_time - (cough_h*3600))//60
+    cough_s = (cough_time - (cough_h*3600) - (cough_m*60))
+    print("The flag time stamps are: ", cough_h, "h ", cough_m, "m ", cough_s, "s")
+
+    #print number of flags
+    num_flags = answer[2]
+    print("Number of flags counted: ", num_flags)
+    
+    #print time-stamps of flags
+    flag_time = np.array(answer[3])/2500
+    flag_h = flag_time//3600
+    flag_m = (flag_time - (flag_h*3600))//60
+    flag_s = (flag_time - (flag_h*3600) - (flag_m*60))
+    print("The flag time stamps are: ", flag_h, "h ", flag_m, "m ", flag_s, "s")
+
+
 
 if __name__ == "__main__":
     main()
