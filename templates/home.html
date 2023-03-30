@@ -14,17 +14,28 @@
     <h1 id="downloadPrompt">Upload your Data Set:</h1>
     
     <div id="dataInputContents">
-        <div class="dataInputDiv">
+        <!-- <div class="dataInputDiv">
             <p>Select Filtered Audio File:</p>
-            <input type="file" id="audioData" name="audioData" accept=".csv" required>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <input type="file" id="audioData" name="audioData" accept=".csv" required>
+            </form>
         </div>
         
         <div class="dataInputDiv">
             <p>Select Filtered Acceleration File:</p>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <input type="file" id="accData" name="accData" accept=".csv" required>
+            </form>
+        </div> -->
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" id="audioData" name="audioData" accept=".csv" required>
             <input type="file" id="accData" name="accData" accept=".csv" required>
-        </div>
+            <button class="btn" id="uploadDataBtn">Upload Data</button>
+        </form>
     </div>
     
+    <!-- <button class="btn" id="uploadDataBtn">Upload Data</button> -->
 
     <dialog id="loadingDialog">
         <h3 class='resultsDialogHeading' id="analyzingHeading">Analyzing...</h3>
@@ -33,14 +44,30 @@
 
     <dialog id="coughCountDialog">
         <h2 class='resultsDialogHeading' id="coughDataName"></h2>
-        <h1 id="coughCountVal"></h1>
+        <h1 id="coughResult">{{coughValue}}</h1>
         <div id="coughDialogBtnsDiv">
             <button id="backHome" class="btn coughBtns" style="margin-right: 2%;">Back</button>
             <button id="toHistory" class="btn coughBtns">See History</button>
         </div>
-    </dialog>
+    </dialog> 
     
-    <button class="btn" id="uploadDataBtn">Upload Data</button>
+    {% if coughValue %}
+    <script>
+        loadingDialog.close();
+        coughCountDialog.showModal();
+        coughCountDialog.style.display = 'flex';
+        
+        const currentDate = new Date();
+
+        const formattedDate = currentDate.toDateString()
+
+        let coughDataName = 'Cough Count: ' + formattedDate;// replace with a function that returns default name
+        //console.log(coughValue);
+        document.getElementById('coughDataName').innerHTML = coughDataName;
+        //document.getElementById('coughResult').innerHTML = coughValue;
+    </script>
+    {% endif %}
+    
 </div>
 
 

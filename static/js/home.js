@@ -52,11 +52,10 @@ function checkFileInput() {
 
 function initializeAnalysis() {
     loadingDialog.showModal();
-
-    setTimeout(showResults, 3000);
 }
 
 function showResults() {
+    console.log('showing results')
     loadingDialog.close();
     coughCountDialog.showModal();
     coughCountDialog.style.display = 'flex';
