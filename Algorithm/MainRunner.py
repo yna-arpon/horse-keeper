@@ -26,11 +26,11 @@ def main():
     #Get calculations
     #assuming 8kHz (16000 data points for 2s, 32000 for 4s) for data collection this is how we slice an array into parts
     x = 0
-    for i in range(0, len(audio_data[0])//5000):
+    for i in range(0, len(audio_data[0])//20000):
 
         #slice the audio data
-        audio_slice = audio_data[0][x:x+9999:1] #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
-        accel_slice = accel_data[0][x:x+9999:1]
+        audio_slice = audio_data[0][x:x+39999:1] #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
+        accel_slice = accel_data[0][x:x+39999:1]
 
         #make calculation class for audio slices
         audio_calculations = audio_data_calculator(audio_slice)
@@ -54,7 +54,7 @@ def main():
         accel_data[5].append(accel_calculations.accel_returnarr[4])
         accel_data[6].append(accel_calculations.accel_returnarr[5] + x)
 
-        x += 5000
+        x += 20000
 
     # print("This is audio array", audio_data)
     # print("This is accelerometer array", accel_data)
@@ -74,7 +74,7 @@ def main():
     print("Number of horse coughs counted: ", num_coughs)
     
     #print time-stamps of coughs
-    cough_time = np.array(answer[1])/2500
+    cough_time = np.array(answer[1])/10000
     cough_h = cough_time//3600
     cough_m = (cough_time - (cough_h*3600))//60
     cough_s = (cough_time - (cough_h*3600) - (cough_m*60))
@@ -85,7 +85,7 @@ def main():
     print("Number of flags counted: ", num_flags)
     
     #print time-stamps of flags
-    flag_time = np.array(answer[3])/2500
+    flag_time = np.array(answer[3])/10000
     flag_h = flag_time//3600
     flag_m = (flag_time - (flag_h*3600))//60
     flag_s = (flag_time - (flag_h*3600) - (flag_m*60))
