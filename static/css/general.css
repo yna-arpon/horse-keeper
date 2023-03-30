@@ -22,3 +22,25 @@
     color: #D8D8D8;
     text-decoration: none;
 }
+
+
+/* Nav Bar Styling */
+
+#navBar {
+    margin: 2% 0% 0% 2%;
+}
+
+.navBarContents {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+}
+
+#homeBtn {
+    margin-right: 1%;
+}
+
+.navBarContents:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
