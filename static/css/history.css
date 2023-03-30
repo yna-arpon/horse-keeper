@@ -1,1 +1,54 @@
 /* ---------------------------- Styling for History Page  --------------------------- */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#historycontents    {
+    font-size:1.2rem ;
+    margin-left: 50px;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+#sortbyBtn { /* could add arrow image */
+    margin-left: 60px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 1px 1px 1px 5px;
+    align-items: start;
+    position: relative;border-radius:2px;
+    font-size: 1rem;
+    border-radius: 12px ; 
+    border: 1px solid black;
+    background-color: white ;
+    color: black;
+}
+
+#DropDown   {
+    width: 20px;
+    height: 20px;
+    position: relative;top:3px;
+    padding: 1px 3px 1px 20px;
+    
+}
+
+/* Can improve using class history table but this is fine for now */
+table   {
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 90%; 
+}
+
+th  {
+    border-bottom: 2px solid black;
+}
+
+td  {
+    border-bottom: 1px solid lightslategray;
+    border-collapse: collapse;
+    padding: 5px;
+}

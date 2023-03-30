@@ -6,7 +6,30 @@
 {% endblock %}
 
 {% block body %}
-<h1>This is the history page</h1>
+<div id="historycontents">
+    <h1> History </h1>
+</div>
+
+
+<button id="sortbyBtn" > Sort by <image id="DropDown" src = "static/images/DropDown.png" ></image></button>
+
+
+
+<div class="historytable">
+    <table>
+        <tr>
+            <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
+        </tr> 
+        {% for data in datas %}
+            <tr>
+                <td> {{data.dataName}} </td> <!-- Would use Jinja2 syntax to get info -->
+                <td> {{data.coughCount}} </td>
+                <td> {{data.dataCreated}}</td>
+                <td> <a href=""> Delete </a> </td> 
+            </tr>
+        {% end for}
+    </table>
+</div>
 
 <script src="{{url_for('static', filename='js/history.js')}}"></script>
 {% endblock %}

@@ -12,7 +12,7 @@
     border-radius: 12px;
 }
 
-.btn:hover {
+.btn:hover:enabled {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -27,7 +27,7 @@
 /* Nav Bar Styling */
 
 #navBar {
-    margin: 2% 0% 0% 2%;
+    margin: 1% 0% 0% 2.5%;
 }
 
 .navBarContents {
