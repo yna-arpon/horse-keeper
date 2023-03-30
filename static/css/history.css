@@ -50,4 +50,5 @@ th  {
 td  {
     border-bottom: 1px solid lightslategray;
     border-collapse: collapse;
+    padding: 5px;
 }

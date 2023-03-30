@@ -14,25 +14,36 @@ class cough(db.Model):
     dataName = db.Column(db.String(100), default='Cough Count on ' + datetime.now().strftime("%d/%m/%Y %H:%M:%S")) 
         # default name of cough data instance - user can change
 
+    def __repr__(self):
+        return '<Data %r>' % self.id
 
 
 @app.route('/', methods=['POST','GET'])
 def home():
     if request.method == 'POST':
+
         # Send files to main and recieve cough count
         audioData = request.files['audioData']
         accData = request.files['accData']
         coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
+        new_data = cough(coughCount=coughValue)
+        
+        try:
+            db.session.add(new_data)
+            db.session.commit()
+            # Display cough results
+            return render_template('home.html', coughValue=coughValue)
+        except:
+            return 'error'
 
-        # Display cough count results
-        return render_template('home.html', coughValue=coughValue)
     else:
         return render_template('home.html')
         
 
 @app.route('/history')  # GETTING OPERATIONAL ERRORS. WIP
 def history():
-    return render_template('history.html')
+    data = cough.query.order_by(cough.dateCreated).all() # Looks at database in order created and grab all
+    return render_template('history.html', data=data)
     
 
 @app.route('/delete/<int:id>')

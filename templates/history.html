@@ -20,12 +20,14 @@
         <tr>
             <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
         </tr> 
+        {% for onedata in data %}
             <tr>
-                <td> File name </td> <!-- Would use Jinja2 syntax to get info -->
-                <td> 200 million rip </td>
-                <td> idk what day it is</td>
+                <td> {{data.dataName}} </td> <!-- Would use Jinja2 syntax to get info -->
+                <td> {{data.coughCount}} </td>
+                <td> {{data.dataCreated}}</td>
                 <td> <a href=""> Delete </a> </td> 
             </tr>
+        {% end for}
     </table>
 </div>
 
