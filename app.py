@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
-from Algorithm.MainRunner import main
+from algorithm.trial import main
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coughData.db'
@@ -27,18 +26,8 @@ def home():
         audioData = request.files['audioData']
         accData = request.files['accData']
         coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
-        return render_template('home.html', coughValue=coughValue)
-    
-        # new_data = cough(coughCount=coughValue)
-        # print(new_data)
         
-        # try:
-        #     db.session.add(new_data)
-        #     db.session.commit()
-        #     # Display cough results
-        #     return render_template('home.html', coughValue=coughValue)
-        # except:
-        #     return 'error'
+        return render_template('home.html', coughValue=coughValue)
 
     else:
         return render_template('home.html')
@@ -46,13 +35,13 @@ def home():
 
 @app.route('/history')  # GETTING OPERATIONAL ERRORS. WIP
 def history():
-    data = cough.query.order_by(cough.dateCreated).all() # Looks at database in order created and grab all
-    return render_template('history.html', data=data)
+    #data = cough.query.order_by(cough.dateCreated).all() # Looks at database in order created and grab all
+    return render_template('history.html')
     
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    data_to_delete = "pass"
+    data_to_delete = cough.query.get_or_404(id)
 
     try:
         db.session.delete(data_to_delete)
