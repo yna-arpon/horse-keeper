@@ -8,6 +8,7 @@
 {% block body %}
 <div id="historycontents">
     <h1> History </h1>
+    <!--<img src=""-->
 </div>
 
 <button id="sortbyBtn" > Sort by </button>
@@ -16,21 +17,14 @@
     <table>
         <tr>
             <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
-        </tr>
-        {% for file in files %} 
+        </tr> 
             <tr>
-                <td> {{ file.content }}</td>
+                <td> File name </td> <!-- Would use Jinja2 syntax to get info -->
                 <td> 200 million rip </td>
-                <td> {{ file.dateCreated.date() }}</td>
-                <td> <a href=""> Delete </a> <br/> <a href=""> Rename </a> </td> 
+                <td> idk what day it is</td>
+                <td> <a href=""> Delete </a> </td> 
             </tr>
-        {% end for %}
     </table>
-<!-- OPERATIONAL ERRORS. WIP -->
-    <form action="/history" method="POST"> <!-- not needed. testing-->
-        <input type="text" id="content" name="content">
-        <input type="submit" id="data" name="data"> <!-- testing. this would be the submit on home page-->
-    </form>
 </div>
 
 <script src="{{url_for('static', filename='js/history.js')}}"></script>
