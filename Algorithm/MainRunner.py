@@ -1,14 +1,13 @@
 import numpy as np #most likely need
 # import tensorflow as tf #may need
-import pandas as pd
 
-from AnswerGenerator import AnswerGen
-from AccelerometerCalculator import accel_data_calculator
-from AudioCalculator import audio_data_calculator
+from .AnswerGenerator import AnswerGen
+from .AccelerometerCalculator import accel_data_calculator
+from .AudioCalculator import audio_data_calculator
 
-def main():
-    audio_file_path = input('Enter filepath name: ') #user inputs 'Path where the CSV file is stored\File name.csv' usually done with = input('Enter filepath name: ') in python
-    accel_file_path = input('Enter filepath name: ') #user inputs 'Path where the CSV file is stored\File name.csv' usually done with = input('Enter filepath name: ') in python
+def main(audio_file_path, accel_file_path):
+    # audio_file_path = input('Enter filepath name: ') #user inputs 'Path where the CSV file is stored\File name.csv' usually done with = input('Enter filepath name: ') in python
+    # accel_file_path = input('Enter filepath name: ') #user inputs 'Path where the CSV file is stored\File name.csv' usually done with = input('Enter filepath name: ') in python
    
     cough_num = [[],[]] # [[number of coughs],[global max point numbers at each cough]]
     flag_num = [[],[]] # [[number of flags],[global max point numbers at each flag]]
@@ -90,6 +89,8 @@ def main():
     flag_m = (flag_time - (flag_h*3600))//60
     flag_s = (flag_time - (flag_h*3600) - (flag_m*60))
     print("The flag time stamps are: ", flag_h, "h ", flag_m, "m ", flag_s, "s")
+
+    return (num_coughs)
 
 
 
