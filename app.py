@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from Algorithm.trial import main
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coughData.db'
@@ -15,11 +16,21 @@ class cough(db.Model):
 
 
 
-@app.route('/')
+@app.route('/', methods=['POST','GET'])
 def home():
-    return render_template('home.html')
+    if request.method == 'POST':
+        # Send files to main and recieve cough count
+        audioData = request.files['audioData']
+        accData = request.files['accData']
+        coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
 
-@app.route('/history', methods=['POST', 'GET'])  # GETTING OPERATIONAL ERRORS. WIP
+        # Display cough count results
+        return render_template('home.html', coughValue=coughValue)
+    else:
+        return render_template('home.html')
+        
+
+@app.route('/history')  # GETTING OPERATIONAL ERRORS. WIP
 def history():
     if request.method == 'POST':
         cough_content = request.form['content'] # get our input (testing. final should be from homepage)
@@ -34,6 +45,7 @@ def history():
     else:
         files = cough.query.order_by(cough.dateCreated).all() # ordering by date created. can use first, etc. use for sort function
         return render_template('history.html', files=files)
+    render_template('history.html')
     
 
 @app.route('/delete/<int:id>')
