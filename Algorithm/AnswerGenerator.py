@@ -83,7 +83,7 @@ class AnswerGen:
 
         for x in self.data2[5]:
 
-            if x < 1.2*self.data2[4][np.where(self.data2[5] == x)[0][0]]:
+            if x < 0.8*self.data2[4][np.where(self.data2[5] == x)[0][0]]:
                 accel_min_result.append(1)
 
             else:
