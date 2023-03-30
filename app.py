@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from Algorithm.trial import main
+from algorithm.trial import main
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coughData.db'
@@ -32,20 +32,7 @@ def home():
 
 @app.route('/history')  # GETTING OPERATIONAL ERRORS. WIP
 def history():
-    if request.method == 'POST':
-        cough_content = request.form['content'] # get our input (testing. final should be from homepage)
-        new_file = cough(content=cough_content)
-        try:
-            db.session.add(new_file)
-            db.session.commit()
-            return redirect('/history')
-        except:
-            return 'There was an issue adding your file'
-        
-    else:
-        files = cough.query.order_by(cough.dateCreated).all() # ordering by date created. can use first, etc. use for sort function
-        return render_template('history.html', files=files)
-    render_template('history.html')
+    return render_template('history.html')
     
 
 @app.route('/delete/<int:id>')
