@@ -15,7 +15,7 @@ class cough(db.Model):
         # default name of cough data instance - user can change
 
     def __repr__(self):
-        return '<Data %r>' % self.id
+       return '<Data %r>' % self.id
 
 
 @app.route('/', methods=['POST','GET'])
@@ -27,6 +27,7 @@ def home():
         accData = request.files['accData']
         coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
         new_data = cough(coughCount=coughValue)
+        print(new_data)
         
         try:
             db.session.add(new_data)

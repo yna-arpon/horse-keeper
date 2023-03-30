@@ -20,7 +20,7 @@
         <tr>
             <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
         </tr> 
-        {% for onedata in data %}
+        {% for data in datas %}
             <tr>
                 <td> {{data.dataName}} </td> <!-- Would use Jinja2 syntax to get info -->
                 <td> {{data.coughCount}} </td>
