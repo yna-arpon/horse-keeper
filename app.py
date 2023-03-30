@@ -27,16 +27,18 @@ def home():
         audioData = request.files['audioData']
         accData = request.files['accData']
         coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
-        new_data = cough(coughCount=coughValue)
-        print(new_data)
+        return render_template('home.html', coughValue=coughValue)
+    
+        # new_data = cough(coughCount=coughValue)
+        # print(new_data)
         
-        try:
-            db.session.add(new_data)
-            db.session.commit()
-            # Display cough results
-            return render_template('home.html', coughValue=coughValue)
-        except:
-            return 'error'
+        # try:
+        #     db.session.add(new_data)
+        #     db.session.commit()
+        #     # Display cough results
+        #     return render_template('home.html', coughValue=coughValue)
+        # except:
+        #     return 'error'
 
     else:
         return render_template('home.html')
