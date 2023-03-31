@@ -56,6 +56,35 @@
     flex-direction: column;
 }
 
+.fileUpload {
+    text-align: center;
+    margin: 10px;
+    width: 190px;
+}
+
+.fileUpload:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.labelUpload:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#formContents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#selectedFilesInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
 /* ------ Dialog Styling ------ */
 
 dialog {

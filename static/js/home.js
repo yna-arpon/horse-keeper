@@ -14,13 +14,30 @@ let coughCountDialog = document.getElementById('coughCountDialog');
 let coughCountVal = document.getElementById('coughCountVal');
 let coughDataHeadingName = document.getElementById('coughDataName');
 let backHomeBtn = document.getElementById('backHome');
-let toHistoryBtn = document.getElementById('toHistory')
+let toHistoryBtn = document.getElementById('toHistory');
+let audioFileName = document.getElementById('audioDataSelectedFile');
+let accFileName = document.getElementById('accDataSelectedFile');
+let filesStateInfo = document.getElementById('filesStateInfo');
 
 // Setup ------------------------------------------------------------------------------------------
 
 
 
 // Event Listeners ------------------------------------------------------------------------------------------
+
+// --------- When user clicks selects audio data
+audioData.addEventListener("change", (_event) => {
+    let selectedAudioFile = document.querySelector("#audioData").files[0];
+    audioFileName.innerText = "Audio File: " + selectedAudioFile.name;
+    filesStateInfo.style.display = "none";
+})
+
+// --------- When user clicks selects acc data
+accData.addEventListener("change", (_event) => {
+    let selectedAccFile = document.querySelector("#accData").files[0];
+    accFileName.innerText = "Acceleration File: " + selectedAccFile.name;
+    filesStateInfo.style.display = "none";
+})
 
 // --------- When user clicks upload button
 uploadBtn.addEventListener('click', (_event) => {
