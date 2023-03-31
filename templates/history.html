@@ -29,10 +29,14 @@
   
 
 <script> // Temporary delete row function (JS & HTML)
-    function DeleteRowFunction(o) {
-        var p=o.parentNode.parentNode;
-        p.parentNode.removeChild(p);
-    }
+    function DeleteRowFunction(button) {
+    var row = button.parentNode.parentNode;
+    if (row.parentNode.rows.length > 2) { // check if there are more than 2 rows in the table (i.e., header + at least 1 data row)
+        var rowIndex = row.rowIndex;
+    row.parentNode.deleteRow(rowIndex);
+  }
+}
+
 </script>
 
 <div class="historytable">
