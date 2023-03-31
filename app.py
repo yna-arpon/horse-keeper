@@ -26,7 +26,9 @@ def home():
         # Send files to main and recieve cough count
         audioData = request.files['audioData']
         accData = request.files['accData']
-        coughValue = main(audioData, accData) # using trial.py right now as a dummy function in place of mainRunner
+        print("audioData: ", audioData)
+        print("accData: ", audioData)
+        coughValue = main(audioData, accData)
         return render_template('home.html', coughValue=coughValue)
     
         # new_data = cough(coughCount=coughValue)

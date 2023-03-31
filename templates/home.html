@@ -13,29 +13,35 @@
     <h1 id="homeHeader">HorseKeeper</h1>
     <h1 id="downloadPrompt">Upload your Data Set:</h1>
     
-    <div id="dataInputContents">
-        <!-- <div class="dataInputDiv">
-            <p>Select Filtered Audio File:</p>
-            <form action="/" method="POST" enctype="multipart/form-data">
-                <input type="file" id="audioData" name="audioData" accept=".csv" required>
-            </form>
-        </div>
-        
-        <div class="dataInputDiv">
-            <p>Select Filtered Acceleration File:</p>
-            <form action="/" method="POST" enctype="multipart/form-data">
-                <input type="file" id="accData" name="accData" accept=".csv" required>
-            </form>
-        </div> -->
-
-        <form action="/" method="POST" enctype="multipart/form-data">
-            <input type="file" id="audioData" name="audioData" accept=".csv" required>
-            <input type="file" id="accData" name="accData" accept=".csv" required>
-            <button class="btn" id="uploadDataBtn">Upload Data</button>
-        </form>
-    </div>
     
-    <!-- <button class="btn" id="uploadDataBtn">Upload Data</button> -->
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div id="formContents">
+                <div id="dataInputContents">
+                    <div class="btn fileUpload" id="audioDataBtnDiv">
+                        <label for="audioData" class="labelUpload">
+                            <i class="fa fa-cloud-upload"></i>Choose Audio   <br>  Data File
+                        </label>
+                        <input type="file" id="audioData" name="audioData" accept=".csv" style="display: none;" required>
+                    </div>
+                    
+                    
+                    <div  class="btn fileUpload" id="accDataBtnDiv">
+                        <label for="accData" class="labelUpload">
+                            <i class="fa fa-cloud-upload"></i>Choose Acceleration<br>Data File
+                        </label>
+                        <input type="file" id="accData" name="accData" accept=".csv" style="display: none;" required>
+                    </div>
+                </div>
+                
+                <div id="selectedFilesInfo">
+                    <span id="filesStateInfo">No Files Have Been Selected</span>
+                    <span id="audioDataSelectedFile"><br></span>
+                    <span id="accDataSelectedFile"></span>
+                </div>
+
+                <button class="btn" id="uploadDataBtn">Upload Data</button>
+            </div>
+        </form>
 
     <dialog id="loadingDialog">
         <h3 class='resultsDialogHeading' id="analyzingHeading">Analyzing...</h3>
@@ -59,7 +65,7 @@
         
         const currentDate = new Date();
 
-        const formattedDate = currentDate.toDateString()
+        const formattedDate = currentDate.toDateString();
 
         let coughDataName = 'Cough Count: ' + formattedDate;// replace with a function that returns default name
         //console.log(coughValue);
