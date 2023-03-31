@@ -11,9 +11,29 @@
 </div>
 
 
-<button id="sortbyBtn" > Sort by <image id="DropDown" src = "static/images/DropDown.png" ></image></button>
+ <!--<button id="sortbyBtn" > Sort by <image id="DropDown" src = "static/images/DropDown.png" ></image></button> DATABASE--> 
+<!--<select id="sortbyBtn" onchange="sortNames()">
+    <image id="DropDown" src = "static/images/DropDown.png" ></image>
+    <option value="asc">Sort A-Z</option>
+    <option value="desc">Sort Z-A</option>
+    
+  </select> WITHOUT STYLING--> 
 
+  <div class="sortby-container">
+    <select id="sortbyBtn" onchange="sortNames()">
+        <option value="asc">Sort A-Z</option>
+        <option value="desc">Sort Z-A</option>
+    </select> 
+    <div id="sortbyArrow"></div>
+  </div>
+  
 
+<script> // Temporary delete row function (JS & HTML)
+    function DeleteRowFunction(o) {
+        var p=o.parentNode.parentNode;
+        p.parentNode.removeChild(p);
+    }
+</script>
 
 <div class="historytable">
     <table>
@@ -21,13 +41,15 @@
             <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
         </tr> 
             <tr>
-                <td> Cough count </td> <!-- Would use Jinja2 syntax to get info -->
+                <td class="name"> Cough count </td> <!-- Would use Jinja2 syntax to get info -->
                 <td> 1 </td>
                 <td> March 31, 2023 </td>
-                <td> <a href=""> Delete </a> </td> 
+                <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
             </tr>
     </table>
 </div>
+
+<!--<a href=""> Delete-->
 
 <script src="{{url_for('static', filename='js/history.js')}}"></script>
 {% endblock %}

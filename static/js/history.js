@@ -10,5 +10,29 @@ function tableSort()    {
     // Descending cough
     // time 
     // data size 
-    alert("You have pressed the button. Currently it does nothing.")
+    alert("Sorted by Date")
+    
 }
+
+function sortNames() {
+    var sortOption = document.getElementById("sortbyBtn").value;
+    var nameList = document.getElementsByClassName("name");
+  
+    var namesArray = Array.prototype.slice.call(nameList);
+    namesArray.sort(function(a, b) {
+      var nameA = a.innerText.toLowerCase();
+      var nameB = b.innerText.toLowerCase();
+  
+      if (sortOption === "asc") {
+        return nameA.localeCompare(nameB);
+      } else {
+        return nameB.localeCompare(nameA);
+      }
+    });
+  
+    var parent = nameList[0].parentNode;
+    for (var i = 0; i < namesArray.length; i++) {
+      parent.appendChild(namesArray[i]);
+    }
+  }
+  
