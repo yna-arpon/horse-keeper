@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from Algorithm.MainRunner import main
+from algorithm.MainRunner import main
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coughData.db'
@@ -39,16 +39,16 @@ def history():
     return render_template('history.html')
     
 
-@app.route('/delete/<int:id>')
-def delete(id):
-    data_to_delete = cough.query.get_or_404(id)
+#@app.route('/delete/<int:id>')
+#def delete(id):
+ #   data_to_delete = cough.query.get_or_404(id)
 
-    try:
-        db.session.delete(data_to_delete)
-        db.session.commit()
-        return redirect('/history')
-    except:
-        return 'There was a problem deleting the file'
+   # try:
+  #      db.session.delete(data_to_delete)
+ #       db.session.commit()
+ #       return redirect('/history')
+ #   except:
+ #       return 'There was a problem deleting the file'
 
 if __name__ == "__main__":
     app.run(debug=True) 
