@@ -16,7 +16,7 @@ function tableSort()    {
 
 function sortNames() {
     var sortOption = document.getElementById("sortbyBtn").value;
-    var nameList = document.getElementsByClassName("name");
+    var nameList = document.querySelectorAll('tr:not(:first-child)');
   
     var namesArray = Array.prototype.slice.call(nameList);
     namesArray.sort(function(a, b) {
@@ -30,7 +30,7 @@ function sortNames() {
       }
     });
   
-    var parent = nameList[0].parentNode;
+    var parent = nameList[0].parentNode.parentNode;
     for (var i = 0; i < namesArray.length; i++) {
       parent.appendChild(namesArray[i]);
     }
