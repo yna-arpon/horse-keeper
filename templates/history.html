@@ -42,32 +42,17 @@
 <div class="historytable">
     <table>
         <tr>
-            <th> File Name </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
+            <th> Cough Count Instance </th> <th> Cough Count </th> <th> Date Added </th> <th> Actions </th>
+       
         </tr> 
+        {% for Data in coughData%}
             <tr>
-                <td class="name"> Filtered cough </td> <!-- Would use Jinja2 syntax to get info -->
-                <td> 1 </td>
-                <td> March 31, 2023 </td>
+                <td class="name"> {{ Data.dataName }} </td> <!-- Would use Jinja2 syntax to get info -->
+                <td> {{ Data.coughCount }} </td>
+                <td> {{ Data.dateCreated.date() }} </td>
                 <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
             </tr>
-            <tr>
-                <td class="name"> Unfiltered cough </td> <!-- Would use Jinja2 syntax to get info -->
-                <td> 1 </td>
-                <td> March 31, 2023 </td>
-                <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
-            </tr>
-            <tr>
-                <td class="name"> Unfiltered vibchew </td> <!-- Would use Jinja2 syntax to get info -->
-                <td> 0 </td>
-                <td> March 31, 2023 </td>
-                <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
-            </tr>
-            <tr>
-                <td class="name"> Unfiltered 16 </td> <!-- Would use Jinja2 syntax to get info -->
-                <td> 16 </td>
-                <td> March 31, 2023 </td>
-                <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
-            </tr>
+        {% endfor %}
     </table>
 </div>
 

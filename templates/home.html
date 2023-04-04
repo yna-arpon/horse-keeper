@@ -57,7 +57,7 @@
         </div>
     </dialog> 
     
-    {% if coughValue %}
+    {% if coughValue is defined and coughValue >= 0 %}
     <script>
         loadingDialog.close();
         coughCountDialog.showModal();

@@ -28,8 +28,8 @@ def main(audio_file_path, accel_file_path):
     for i in range(0, len(audio_data[0])//20000):
 
         #slice the audio data
-        audio_slice = audio_data[0][x:x+39999:1] #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
-        accel_slice = accel_data[0][x:x+39999:1]
+        audio_slice = audio_data[0][x:x+39999:10] #the number 1 can be changed to 2 (or larger) which skips over every other data point (this can be used to speed up the algorithm)
+        accel_slice = accel_data[0][x:x+39999:10]
 
         #make calculation class for audio slices
         audio_calculations = audio_data_calculator(audio_slice)
@@ -69,7 +69,7 @@ def main(audio_file_path, accel_file_path):
     answer = cough_answers.cough
 
     #print number of coughs
-    num_coughs = answer[0]
+    num_coughs = int (answer[0])
     print("Number of horse coughs counted: ", num_coughs)
     
     #print time-stamps of coughs
