@@ -39,16 +39,5 @@ def history():
     return render_template('history.html')
     
 
-#@app.route('/delete/<int:id>')
-#def delete(id):
- #   data_to_delete = cough.query.get_or_404(id)
-
-   # try:
-  #      db.session.delete(data_to_delete)
- #       db.session.commit()
- #       return redirect('/history')
- #   except:
- #       return 'There was a problem deleting the file'
-
 if __name__ == "__main__":
     app.run(debug=True) 
