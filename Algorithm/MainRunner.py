@@ -80,7 +80,7 @@ def main(audio_file_path, accel_file_path):
     print("The flag time stamps are: ", cough_h, "h ", cough_m, "m ", cough_s, "s")
 
     #print number of flags
-    num_flags = answer[2]
+    num_flags = int(answer[2])
     print("Number of flags counted: ", num_flags)
     
     #print time-stamps of flags
@@ -90,7 +90,7 @@ def main(audio_file_path, accel_file_path):
     flag_s = (flag_time - (flag_h*3600) - (flag_m*60))
     print("The flag time stamps are: ", flag_h, "h ", flag_m, "m ", flag_s, "s")
 
-    return (num_coughs)
+    return (num_coughs, num_flags)
 
 
 

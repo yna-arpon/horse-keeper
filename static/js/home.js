@@ -76,10 +76,4 @@ function showResults() {
     loadingDialog.close();
     coughCountDialog.showModal();
     coughCountDialog.style.display = 'flex';
-    
-    let coughCount = 13; // replace with a function that returns algorithm results
-    let coughDataName = 'Cough Count' // replace with a function that returns default name
-    
-    coughDataHeadingName.innerHTML = coughDataName;
-    coughCountVal.innerHTML = coughCount;
 }
