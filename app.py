@@ -47,7 +47,17 @@ def home():
 def history():
     coughData = cough.query.order_by(cough.dateCreated).all() # Looks at database in order created and grab all
     return render_template('history.html', coughData=coughData)
-    
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    task_to_delete = cough.query.get_or_404(id)
+
+    try:
+        db.session.delete(task_to_delete)
+        db.session.commit()
+        return redirect('/history')
+    except:
+        return 'There was a problem deleting that task'
 
 if __name__ == "__main__":
     with app.app_context():

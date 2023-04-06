@@ -22,16 +22,6 @@
   </div>
   
 
-<script> // Temporary delete row function (JS & HTML)
-    function DeleteRowFunction(button) {
-    var row = button.parentNode.parentNode;
-    if (row.parentNode.rows.length > 2) { // check if there are more than 2 rows in the table (i.e., header + at least 1 data row)
-        var rowIndex = row.rowIndex;
-    row.parentNode.deleteRow(rowIndex);
-  }
-}
-
-</script>
 
 <div class="historytable">
     <table>
@@ -43,7 +33,7 @@
                 <td class="name"> {{ Data.dataName }} </td> <!-- Would use Jinja2 syntax to get info -->
                 <td> {{ Data.coughCount }} </td>
                 <td> {{ Data.dateCreated.date() }} </td>
-                <td><input type="button" class = "deleteBtn" value="Delete" onclick="DeleteRowFunction(this)" > </td> 
+                <td> <a href="/delete/{{Data.id}}" class="deleteBtn">Delete</a> </td> 
             </tr>
         {% endfor %}
     </table>
