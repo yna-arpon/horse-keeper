@@ -49,9 +49,29 @@
     </dialog>
 
     <dialog id="coughCountDialog">
-        <h2 class='resultsDialogHeading' id="coughDataName"></h2>
-        <h1 id="coughResult">{{coughValue}}</h1>
-        <h2 id="numFlags">Number of Flags: {{flagValue}}</h2>
+        <div class="dialogDivs" id="resultsDiv">
+            <h2 class='resultsDialogHeading' id="coughDataName"></h2>
+            <h1 id="coughResult">{{coughValue}}</h1>
+            <h2 id="numFlags">Number of Flags: {{flagValue}}</h2>
+            <button id="seeTimestamps" class="btn coughBtns">See Timestamps</button>
+        </div>
+
+        <div class="dialogDivs" id="timeStampsDiv" style="display: none;">
+            <h1>Cough Time Stamps</h1>
+            <ul>
+                {% for array in coughTimeStamps %}
+                   <li>{{ array[0] }} {{ array[1] }} {{ array[2] }} {{ array[3] }}</li>
+                {% endfor %}
+            </ul>
+            <h1>Flag Time Stamps</h1>
+             <ul>
+                {% for array in flagTimeStamps %}
+                   <li>{{ array[0] }} {{ array[1] }} {{ array[2] }} {{ array[3] }}</li>
+                {% endfor %}
+            </ul>
+            <button id="seeCoughCount" class="btn coughBtns">See Cough & Flag Count</button>
+        </div>
+        
         <div id="coughDialogBtnsDiv">
             <button id="backHome" class="btn coughBtns" style="margin-right: 2%;">Back</button>
             <button id="toHistory" class="btn coughBtns">See History</button>

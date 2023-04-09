@@ -77,7 +77,22 @@ def main(audio_file_path, accel_file_path):
     cough_h = cough_time//3600
     cough_m = (cough_time - (cough_h*3600))//60
     cough_s = (cough_time - (cough_h*3600) - (cough_m*60))
-    print("The flag time stamps are: ", cough_h, "h ", cough_m, "m ", cough_s, "s")
+    # print("The flag time stamps are: ", cough_h, "h ", cough_m, "m ", cough_s, "s")
+
+    final_cough_time_arr = []
+
+    if(len(cough_h)==0):
+        cough_result = "There are no cough time stamps"
+        final_cough_time_arr.append([cough_result])
+
+    for i in range(len(cough_h)):
+        cough_time_num = "Timestamp " + str(i+1) + ":"
+        cough_hour = str(cough_h[i]) + "h"
+        cough_min = str(cough_m[i]) + "m"
+        cough_sec = str(cough_s[i]) + "s"
+        final_cough_time_arr.append([cough_time_num, cough_hour, cough_min, cough_sec])
+    
+    print(final_cough_time_arr)
 
     #print number of flags
     num_flags = int(answer[2])
@@ -88,9 +103,23 @@ def main(audio_file_path, accel_file_path):
     flag_h = flag_time//3600
     flag_m = (flag_time - (flag_h*3600))//60
     flag_s = (flag_time - (flag_h*3600) - (flag_m*60))
-    print("The flag time stamps are: ", flag_h, "h ", flag_m, "m ", flag_s, "s")
 
-    return (num_coughs, num_flags)
+    final_flag_time_arr = []
+
+    if(len(flag_h)==0):
+        flag_result = "There are no flag time stamps"
+        final_flag_time_arr.append([flag_result])
+
+    for i in range(len(flag_h)):
+        flag_time_num = "Time Stamp " + str(i+1) + ":"
+        flag_hour = str(flag_h[i]) + "h"
+        flag_min = str(flag_m[i]) + "m"
+        flag_sec = str(flag_s[i]) + "s"
+        final_flag_time_arr.append([flag_time_num, flag_hour, flag_min, flag_sec])
+
+    print(final_flag_time_arr)
+
+    return (num_coughs, num_flags, final_cough_time_arr, final_flag_time_arr)
 
 
 

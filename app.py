@@ -30,14 +30,14 @@ def home():
         # Send files to main and recieve cough count
         audioData = request.files['audioData']
         accData = request.files['accData']
-        coughValue, flagValue = main(audioData, accData) 
+        coughValue, flagValue, coughTimeStamps, flagTimeStamps = main(audioData, accData) 
 
         new_cough = cough(coughCount = coughValue)
 
         db.session.add(new_cough)
         db.session.commit()
 
-        return render_template('home.html', coughValue=coughValue, flagValue=flagValue)
+        return render_template('home.html', coughValue=coughValue, flagValue=flagValue, coughTimeStamps=coughTimeStamps, flagTimeStamps=flagTimeStamps)
 
     else:
         return render_template('home.html')

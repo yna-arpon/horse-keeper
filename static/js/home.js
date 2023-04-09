@@ -18,6 +18,10 @@ let toHistoryBtn = document.getElementById('toHistory');
 let audioFileName = document.getElementById('audioDataSelectedFile');
 let accFileName = document.getElementById('accDataSelectedFile');
 let filesStateInfo = document.getElementById('filesStateInfo');
+let seeTimestampsBtn = document.getElementById('seeTimestamps');
+let timeStampsDiv = document.getElementById('timeStampsDiv');
+let resultsDiv = document.getElementById('resultsDiv');
+let seeCoughCountBtn = document.getElementById('seeCoughCount');
 
 // Setup ------------------------------------------------------------------------------------------
 
@@ -52,6 +56,17 @@ backHomeBtn.addEventListener('click', (_event) => {
 // --------- When user clicks history button on dialog
 toHistoryBtn.addEventListener('click', (_event) => {
     window.location.href = '/history';
+})
+
+// --------- When user wants to see timestamps dialog
+seeTimestampsBtn.addEventListener('click', (_event)=>{
+    resultsDiv.style.display = "none"; 
+    timeStampsDiv.style.display = "flex";
+})
+
+seeCoughCountBtn.addEventListener('click', (_event)=> {
+    resultsDiv.style.display = "flex";
+    timeStampsDiv.style.display = "none"
 })
 
 // Helper Functions ------------------------------------------------------------------------------------------
