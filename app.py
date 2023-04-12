@@ -14,7 +14,7 @@ class cough(db.Model):
     id = db.Column(db.Integer, primary_key=True) # specific id of each instance
     coughCount = db.Column(db.Integer) # holds the number of coughs
     dateCreated = db.Column(db.DateTime, default=datetime.now) # when the cough data is downloaded 
-    dataName = db.Column(db.String(200), default='Cough Count on ' + datetime.now().strftime(" %H:%M:%S")) 
+    dataName = db.Column(db.String(200)) 
         # default name of cough data instance
 
     def __repr__(self):
@@ -31,8 +31,9 @@ def home():
         audioData = request.files['audioData']
         accData = request.files['accData']
         coughValue, flagValue, coughTimeStamps, flagTimeStamps = main(audioData, accData) 
+        dataName = "Cough Count on " + datetime.now().strftime("%I:%M%p")
 
-        new_cough = cough(coughCount = coughValue)
+        new_cough = cough(coughCount = coughValue, dataName = dataName)
 
         db.session.add(new_cough)
         db.session.commit()
