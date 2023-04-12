@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import pytz
 from Algorithm.MainRunner import main
 
 app = Flask(__name__)
@@ -30,8 +31,9 @@ def home():
         # Send files to main and recieve cough count
         audioData = request.files['audioData']
         accData = request.files['accData']
-        coughValue, flagValue, coughTimeStamps, flagTimeStamps = main(audioData, accData) 
-        dataName = "Cough Count on " + datetime.now().strftime("%I:%M%p")
+        coughValue, flagValue, coughTimeStamps, flagTimeStamps = main(audioData, accData)
+        timezone = pytz.timezone('US/Mountain') 
+        dataName = "Cough Count on " + datetime.now(timezone).strftime("%I:%M%p")
 
         new_cough = cough(coughCount = coughValue, dataName = dataName)
 
