@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 
 #homeContents {
     display: flex;
@@ -11,7 +15,6 @@
     align-items: center;
     margin-top: 4%;
     margin-bottom: 20%;
-    overflow: hidden;
 }
 
 #horseLogo {
@@ -130,7 +133,7 @@ dialog::backdrop {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+    margin-bottom: 2%;
 }
 
 .coughBtns {

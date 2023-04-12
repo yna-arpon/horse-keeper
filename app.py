@@ -14,8 +14,8 @@ class cough(db.Model):
     id = db.Column(db.Integer, primary_key=True) # specific id of each instance
     coughCount = db.Column(db.Integer) # holds the number of coughs
     dateCreated = db.Column(db.DateTime, default=datetime.now) # when the cough data is downloaded 
-    dataName = db.Column(db.String(100), default='Cough Count on ' + datetime.now().strftime(" %H:%M:%S")) 
-        # default name of cough data instance - user can change
+    dataName = db.Column(db.String(200), default='Cough Count on ' + datetime.now().strftime(" %H:%M:%S")) 
+        # default name of cough data instance
 
     def __repr__(self):
        return '<Data %r>' % self.id
