@@ -9,39 +9,35 @@ HorseKeeper can be accessed [here](https://horsekeeper.herokuapp.com/)
 - **Timestamps:** The points in time within the datasets where a cough or flag may have occurred.
 
 ## Function
-The function of HorseKeeper is best organized and described into two main components: the application and the cough detection algorithm. The application is the interface that the user interacts with, while the algorithm is what analyzes the data. The application enables the users to upload their datasets and sends the data to the algorithm to be analyzed. The algorithm then returns the cough and flag count to be displayed on the application for the user and prints the timestamps into the terminal. All-in-all, these two components work together to meet the needs of the sponsor by providing him with an easy way to input data and receive the final cough and flag counts and time stamps to diagnose equine asthma without manual human supervision effectively. 
+The function of HorseKeeper is best organized and described into two main components: the application and the cough detection algorithm. The application is the interface that the user interacts with, while the algorithm is what analyzes the data. The application enables the users to upload their datasets and sends the data to the algorithm to be analyzed. The algorithm then returns the cough and flag count to be displayed on the application for the user and prints the timestamps into the terminal.
 
 ### Application
 The front end of the application consists of the home page, where users can upload their datasets to receive a cough and flag count with their timestamps, and a history page, where users are able to see the cough count and the date of previous cough occurrences.
 
-The function of the home page is best desribed with the sequenece diagram below:
+The function of the home page is best described with the sequence diagram below:
 ![Home Page Sequence Diagram](static/images/readme_imgs/homeSequenceDiagram.png)
 
 The function of the history page is best described with the sequence diagram below:
 ![History Page Sequence Diagram](static/images/readme_imgs/historySequence.png)
 
 ### Algorithm
-The algorithm consists for four subsections: the MainRunner, AudioCalculator class, AccelerometerCalculator class, and AnswerGenerator class, as seen in the architecture below:
+The algorithm consists of four subsections: the MainRunner, AudioCalculator class, AccelerometerCalculator class, and AnswerGenerator class, as seen in the architecture below:
 
 ** pic of architecture here**
 
-The MainRunner is the applications direct point of access for sharing data and results. The MainRunner receives and reads the CSV data files inputed by the user. It then slices the entire data set into 4 second slices where each slice has a 2 second overlap with the previous slice. Doing so, enable the algorithm to determine critical features of the dataset in manageable slices.
+The MainRunner is the application's direct point of access for sharing data and results. The MainRunner receives and reads the CSV data files input by the user. It then slices the entire data set into 4-second slices where each slice has a 2-second overlap with the previous slice. Doing so, enable the algorithm to determine critical features of the dataset in manageable slices.
 
 ![Visualization of Slices](static/images/readme_imgs/slices.png)
 
-Once sliced, the AudioCalculator and AccelerometerCalculator classes are called. The calculators determine the average of local maxima, the global maximum, and the global maximum index for their respective data sets. In addition, the AccelerometerCalculator class also finds the average of local minima, the global minimum, and the global minimum index. The local maxima and minima serve as noise thresholds. 
+Once sliced, the AudioCalculator and AccelerometerCalculator classes are called. The calculators determine the average of local maxima, the global maximum, and the global maximum index for their respective data sets. In addition, the AccelerometerCalculator class also finds the average of local minima, the global minimum, and the global minimum index. The local maxima and minima serve as noise thresholds.
 
-For a slice containing a cough, the global maximum represents the sound of the horse coughing. For an accelerometer data slice containing a cough, the global maximum represents the horse's head jolting forward and the global minimum represents the horse's head returning. 
+For a slice containing a cough, the global maximum represents the sound of the horse coughing. For an accelerometer data slice containing a cough, the global maximum represents the horse's head jolting forward and the global minimum represents the horse's head returning. After the necessary features and thresholds have been calculated the main runner then saves these values until each slice has gone through the calculators.
 
-After the necessary features and thresholds have been calculated the main runner then saves these values until each slice has gone through the calculators.
-
-Using the previously saved values the main runner then calls the AnswerGenerator class to determine which slices contain coughs and flags.
-
-The global maximums and the global minimum are classified as possible coughs if they are above 20% of their respective noise thresholds. The following flow chart describes how the answer generator decides if a slice contains a cough or a flag.
+Using the previously saved values the main runner then calls the AnswerGenerator class to determine which slices contain coughs and flags. The global maximums and the global minimum are classified as possible coughs if they are above 20% of their respective noise thresholds. The following flow chart describes how the answer generator decides if a slice contains a cough or a flag.
 
 ** pic of flow chart **
 
-After the classes of the algorithm have analyzed the data, the MainRunner then collects the answers and their respective indexes. The algorithm then performs final calculations to format and output the cough count, flag number, and time stamps back to the application's user interface and the terminal. 
+After the classes of the algorithm have analyzed the data, the MainRunner then collects the answers and their respective indexes. The algorithm then performs final calculations to format and output the cough count, flag number, and time stamps back to the application's user interface and the terminal.
 
 
 ## Specification
@@ -50,14 +46,15 @@ Following is the list of software specifications for HorseKeeper:
 
 1. **Web Framework:** Flask (Version 2.0.3)
     
-    The framework of the back-end of the application. This acts as the mediator between the front-end, database and cough-detection algorithm.
+    The framework of the back-end of the application. This acts as the mediator between the front-end, database, and cough-detection algorithm.
 
 2. **Database:** SQLite
-    This saves the user data between session.
+    
+    This saves the user data between sessions.
 
 3. **User interface:** HTML5, CSS3, and JavaScript 
 
-    This is front-end of the application enables user interaction
+    This is the front-end of the application which enables user interaction
 
 4. **Deployment platform:** Heroku free tier
 
@@ -67,20 +64,20 @@ Following is the list of software specifications for HorseKeeper:
     
     This runs multiple worker processes and manages incoming requests from clients, improving the application's performance and stability.
 
-6. **Data modeling:** SQLAlchemy (1.4.46)
+6. **Data modeling:** SQLAlchemy (Version 1.4.46)
     
     The toolkit that enables the application to interact with the SQLite database using Python
 
 7. **Numerical Computing Library:** NumPy (Version 1.19.5) 
     
-    The library used to maniplate the data in the algorithm
+    The library used to manipulate the data in the algorithm
 
 8. **Version Control:** GitHub
 
-    Software tool used to manage changes to source code, and documents over time.
+    The software tool used to manage changes to source code, and documents over time.
 
 ## User Manual
-Following is a step-by-step guide on how to use HorseKeeper to recieve a cough count, flags, and their respective timestamps. 
+Following is a step-by-step guide on how to use HorseKeeper to receive a cough count, flags, and their respective timestamps. 
 
 1. Select your filtered audio dataset (Note: these must be retrieved directly from the filtering algorithm and must be in the form of CSVs)
     * First click the "Choose Audio Data File" Button
