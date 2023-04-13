@@ -21,9 +21,9 @@ The function of the history page is best described with the sequence diagram bel
 ![History Page Sequence Diagram](static/images/readme_imgs/historySequence.png)
 
 ### Algorithm
-The algorithm consists of four subsections: the MainRunner, AudioCalculator class, AccelerometerCalculator class, and AnswerGenerator class, as seen in the architecture below:
+The algorithm consists of four subsections: the MainRunner, AudioCalculator class, AccelerometerCalculator class, and AnswerGenerator class, as seen in the class diagram below:
 
-** pic of architecture here**
+![Algorithm Class Diagram](static/images/readme_imgs/algorithmDiagram.png)
 
 The MainRunner is the application's direct point of access for sharing data and results. The MainRunner receives and reads the CSV data files input by the user. It then slices the entire data set into 4-second slices where each slice has a 2-second overlap with the previous slice. Doing so, enable the algorithm to determine critical features of the dataset in manageable slices.
 
@@ -35,7 +35,7 @@ For a slice containing a cough, the global maximum represents the sound of the h
 
 Using the previously saved values the main runner then calls the AnswerGenerator class to determine which slices contain coughs and flags. The global maximums and the global minimum are classified as possible coughs if they are above 20% of their respective noise thresholds. The following flow chart describes how the answer generator decides if a slice contains a cough or a flag.
 
-** pic of flow chart **
+![Visualization of Slices](static/images/readme_imgs/flowchart.png)
 
 After the classes of the algorithm have analyzed the data, the MainRunner then collects the answers and their respective indexes. The algorithm then performs final calculations to format and output the cough count, flag number, and time stamps back to the application's user interface and the terminal.
 
@@ -44,40 +44,43 @@ After the classes of the algorithm have analyzed the data, the MainRunner then c
 Following is the list of software specifications for HorseKeeper:
 
 
-1. **Web Framework:** Flask (Version 2.0.3)
+1. **Web Framework: Flask (Version 2.0.3)**
     
     The framework of the back-end of the application. This acts as the mediator between the front-end, database, and cough-detection algorithm.
 
-2. **Database:** SQLite
+2. ***Database: SQLite**
     
     This saves the user data between sessions.
 
-3. **User interface:** HTML5, CSS3, and JavaScript 
+3. **User interface: HTML5, CSS3, and JavaScript** 
 
     This is the front-end of the application which enables user interaction
 
-4. **Deployment platform:** Heroku free tier
+4. **Deployment platform: Heroku free tier** 
 
     This is the cloud computing platform used to host HorseKeeper in the cloud
 
-5. **Web server:** Gunicorn (Version 20.1.0)
+5. **Web server: Gunicorn (Version 20.1.0)**
     
     This runs multiple worker processes and manages incoming requests from clients, improving the application's performance and stability.
 
-6. **Data modeling:** SQLAlchemy (Version 1.4.46)
+6. **Data modeling: SQLAlchemy (Version 1.4.46)**
     
     The toolkit that enables the application to interact with the SQLite database using Python
 
-7. **Numerical Computing Library:** NumPy (Version 1.19.5) 
+7. **Numerical Computing Library: NumPy (Version 1.19.5)** 
     
     The library used to manipulate the data in the algorithm
 
-8. **Version Control:** GitHub
+8. **Version Control: GitHub** 
 
     The software tool used to manage changes to source code, and documents over time.
 
 ## User Manual
 Following is a step-by-step guide on how to use HorseKeeper to receive a cough count, flags, and their respective timestamps. 
+
+Using these files, you can follow along this tutorial:
+
 
 1. Select your filtered audio dataset (Note: these must be retrieved directly from the filtering algorithm and must be in the form of CSVs)
     * First click the "Choose Audio Data File" Button
