@@ -1,8 +1,6 @@
 # HorseKeeper 
 HorseKeeper is a web application with an integrated equine cough-detection algorithm that outputs the final cough count, flags, and timestamps for the users. Coughing is one of the most significant symptoms of equine asthma. Currently, there are no easy and efficient methods to monitor cough frequency in horses, thus making diagnosis and treatment monitoring a difficult and tedious process. HorseKeeper enables researchers to easily input audio and acceleration data to receive a cough count, allowing for early diagnosis and regular monitoring of horses at risk.
 
-HorseKeeper can be accessed [here](https://horsekeeper.herokuapp.com/)
-
 #### Definitions:
 - **Cough Count:** Any points in which the algorithm classifies a cough has occurred.
 - **Flags:** Any points where a cough was detected in addition to other points of interest where the algorithm suspects there may have been a cough.
